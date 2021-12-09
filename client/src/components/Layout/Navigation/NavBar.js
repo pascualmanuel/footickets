@@ -97,7 +97,7 @@ const Navigation = ({loggedUser, storeUser}) => {
             </Nav.Link>
             {loggedUser && loggedUser.role === "TEAM" && (
               <NavDropdown title="Mi equipo" id="navbarScrollingDropdown">
-                <NavDropdown.Item as={Link} to="/#">
+                <NavDropdown.Item as={Link} to="/team/profile">
                   Partidos
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/#">

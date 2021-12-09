@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {Card, ListGroup} from "react-bootstrap";
 import {AiOutlineShoppingCart} from "react-icons/ai";
-// import Example from "../../Offcanvas/OffCanvasExample";
+// import Example from "../../Offcanvas/Example";
 
 function Matches() {
   const footballAPI = new APIHandler();

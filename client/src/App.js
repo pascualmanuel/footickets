@@ -8,6 +8,7 @@ import LoginPage from "./components/Pages/Login/login";
 import Matches from "./components/Pages/Matches/Matches";
 import MatchDetails from "./components/Pages/matchDetails/MatchDetails";
 import TeamMatches from "./components/Pages/Matches/TeamMatches";
+import TeamProfile from "./components/Pages/TeamProfile/TeamProfile";
 
 class App extends Component {
   constructor(props) {
@@ -82,8 +83,10 @@ class App extends Component {
               render={(props) => <TeamMatches {...props} />}
             />
             <Route
-              path="/team/role/:id"
-              render={(props) => <TeamMatches {...props} />}
+              path="/team/profile"
+              render={(props) => (
+                <TeamProfile loggedUser={this.state.loggedUser} {...props} />
+              )}
             />
           </Switch>
         </main>

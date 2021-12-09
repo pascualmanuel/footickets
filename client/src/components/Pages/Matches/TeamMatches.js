@@ -16,6 +16,7 @@ function TeamMatches() {
       return teamHandler.getTeamMatches(res.data);
     })
     .then((res) => {
+      // console.log("Hola", res.data.response);
       setMatches(res.data.response);
     })
     .catch((err) => console.log(err));

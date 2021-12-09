@@ -1,4 +1,4 @@
-import OffCanvasExample from "./Offcanvas";
+import OffCanvasExample from "./OffcanvasExample";
 
 function Example() {
   return (
