@@ -84,6 +84,8 @@ router.post("/signup", isLoggedOut, (req, res) => {
   });
 });
 
+///////
+
 router.post("/login", isLoggedOut, (req, res, next) => {
   const {username, password} = req.body;
 

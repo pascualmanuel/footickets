@@ -5,9 +5,9 @@ import {useState, useEffect} from "react";
 import {Card, ListGroup} from "react-bootstrap";
 import {AiOutlineShoppingCart} from "react-icons/ai";
 // import Example from "../../Offcanvas/Example";
+const footballAPI = new APIHandler();
 
 function Matches() {
-  const footballAPI = new APIHandler();
   //   console.log(footballAPI);
   const [matchList, setMatchList] = useState([]);
 
@@ -17,6 +17,7 @@ function Matches() {
     footballAPI
       .getAllMatches(country)
       .then((res) => {
+        console.log("Matches", res.data);
         setMatchList(res.data);
       })
       .catch((err) => console.log(err));

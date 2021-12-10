@@ -1,25 +1,28 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {useParams} from "react-router";
+
 import APIHandler from "../../../services/api.service";
 import {Card, ListGroupItem, ListGroup} from "react-bootstrap";
 import {AiOutlineShoppingCart} from "react-icons/ai";
 
+const teamHandler = new APIHandler();
+
 function TeamMatches() {
   const {teamName} = useParams();
-  const teamHandler = new APIHandler();
 
   const [matches, setMatches] = useState([]);
 
-  teamHandler
-    .getTeamId(teamName)
-    .then((res) => {
-      return teamHandler.getTeamMatches(res.data);
-    })
-    .then((res) => {
-      // console.log("Hola", res.data.response);
-      setMatches(res.data.response);
-    })
-    .catch((err) => console.log(err));
+  useEffect(() => {
+    teamHandler
+      .getTeamId(teamName)
+      .then((res) => {
+        return teamHandler.getTeamMatches(res.data);
+      })
+      .then((res) => {
+        setMatches(res.data.response);
+      })
+      .catch((err) => console.log(err));
+  }, [teamName]);
 
   return (
     <>

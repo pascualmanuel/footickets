@@ -2,10 +2,7 @@ const {Schema, model} = require("mongoose");
 
 const ticketModel = new Schema(
   {
-    stock: {
-      type: Number,
-      required: true,
-    },
+    owner: {type: Schema.Types.ObjectId, ref: "Match"},
     match_id: {type: Schema.Types.ObjectId, ref: "Match"},
   },
   {
