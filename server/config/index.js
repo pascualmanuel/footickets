@@ -43,23 +43,23 @@ module.exports = (app) => {
   app.use(logger("dev"));
   // To have access to `body` property in the request
   app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
+  app.use(express.urlencoded({extended: false}));
   app.use(cookieParser());
 
   // ℹ️ Middleware that adds a "req.session" information and later to check that you are who you say you are 😅
   app.use(
     session({
-      secret: process.env.SESSION_SECRET || "super hyper secret key",
-      resave: false,
+      secret: process.env.SESS_SECRET,
+      resave: true,
       saveUninitialized: false,
-      store: MongoStore.create({
-        mongoUrl: MONGO_URI,
-      }),
       cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 365,
-        sameSite: "none",
-        secure: process.env.NODE_ENV === "production",
+        // sameSite: 'none',
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24,
       },
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/basicAuth",
+      }),
     })
   );
 

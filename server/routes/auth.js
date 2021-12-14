@@ -19,7 +19,7 @@ router.get("/loggedin", (req, res) => {
 });
 
 router.post("/signup", isLoggedOut, (req, res) => {
-  const {username, password, team_id} = req.body;
+  const {username, password, email, team_id} = req.body;
 
   if (!username) {
     return res
@@ -60,6 +60,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         // Create a user and save it in the database
         return User.create({
           username,
+          email,
           password: hashedPassword,
           team_id,
         });
@@ -117,7 +118,6 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           return res.status(400).json({errorMessage: "Wrong credentials."});
         }
         req.session.currentUser = user;
-        console.log(req.session.currentUser);
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.json(user);
       });
@@ -132,7 +132,6 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 });
 
 router.get("/logout", (req, res) => {
-  console.log("la sesion es holiwi", req.session.currentUser);
   req.session.destroy((err) =>
     res.status(200).json({code: 200, message: "Logout successful"})
   );

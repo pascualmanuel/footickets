@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Logo from "../../../assets/ft-logo.png";
 import {Link} from "react-router-dom";
 import AuthService from "../../../services/auth.service";
-import {AiOutlineShoppingCart} from "react-icons/ai";
+
 import {
   Button,
   Container,
@@ -92,9 +92,7 @@ const Navigation = ({loggedUser, storeUser}) => {
               <NavDropdown.Divider />
             </NavDropdown>
             <Nav.Link to="#Tickets">Tickets</Nav.Link>
-            <Nav.Link to="#Tickets">
-              <AiOutlineShoppingCart />
-            </Nav.Link>
+            <Nav.Link to="#Tickets"></Nav.Link>
             {loggedUser && loggedUser.role === "TEAM" && (
               <NavDropdown title="Mi equipo" id="navbarScrollingDropdown">
                 <NavDropdown.Item as={Link} to="/team/profile">

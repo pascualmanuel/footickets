@@ -47,6 +47,8 @@ class APIHandler {
 
   getNextTeamMatches = (teamId) =>
     this.axiosApp.get(`fixtures?team=${teamId}&next=6`);
+
+  getMatch = (teamId) => this.axiosApp.get(`fixtures?id=${teamId}`);
 }
 
 module.exports = APIHandler;

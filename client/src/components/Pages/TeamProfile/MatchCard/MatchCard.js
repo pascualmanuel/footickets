@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {
   Card,
   ListGroupItem,
@@ -6,13 +6,27 @@ import {
   Button,
   InputGroup,
   FormControl,
+  Form,
 } from "react-bootstrap";
+import APIHandler from "../../../../services/api.service";
 
 // import {useParams} from "react-router";
 // import {Card, ListGroupItem, ListGroup} from "react-bootstrap";
 
 function TeamProfile(props) {
+  const teamProfileService = new APIHandler();
+
   const [capacity, setCapacity] = useState(0);
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    if (props.match.dbInfo) {
+      if (props.match.dbInfo?.length !== 0) {
+        setCapacity(props.match.dbInfo[0].capacity);
+        setPrice(props.match.dbInfo[0].price);
+      }
+    }
+  }, [props.match]);
 
   const handleClick = (e, operation) => {
     if (operation === "add") {
@@ -25,6 +39,38 @@ function TeamProfile(props) {
 
   const handleInputChange = (e) => {
     setCapacity(e.currentTarget.value);
+  };
+
+  const handlePriceChange = (e) => {
+    setPrice(e.currentTarget.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    teamProfileService
+      .checkMatch(props.match.fixture.id)
+      .then((response) => {
+        if (response.data.length === 0) {
+          teamProfileService
+            .createMatch({capacity, price, matchId: props.match.fixture.id})
+            .then((match) => console.log(match.data))
+            .catch((err) => console.log(err));
+        } else {
+          teamProfileService
+            .updateMatch({
+              id: response.data[0]._id,
+              price,
+              capacity,
+            })
+            .then((res) => {
+              setCapacity(res.data.capacity);
+              setPrice(res.data.price);
+            })
+            .catch((err) => console.log(err));
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -54,51 +100,44 @@ function TeamProfile(props) {
             <ListGroupItem>{props.match?.fixture.venue.name}</ListGroupItem>
           </ListGroup>
           <Card.Body>
-            <InputGroup className="mb-3">
-              <Button
-                onClick={(e) => handleClick(e, "remove")}
-                variant="outline-secondary"
-                // id={`${}`}
-                id="button-addon1"
-              >
-                -
-              </Button>
-              <FormControl
-                aria-label="capacity"
-                aria-describedby="capacity"
-                onChange={handleInputChange}
-                value={Number(capacity)}
-                id="button-addon1"
-              />
-              <Button
-                onClick={(e) => handleClick(e, "add")}
-                variant="outline-secondary"
-                id="button-addon1"
-              >
-                +
-              </Button>
-              <Button as="input" type="submit" value="Enviar" />
-            </InputGroup>
+            <Form onSubmit={handleSubmit}>
+              <InputGroup className="mb-3">
+                <Button
+                  onClick={(e) => handleClick(e, "remove")}
+                  variant="outline-secondary"
+                  id="button-addon1"
+                >
+                  -
+                </Button>
+                <FormControl
+                  aria-label="capacity"
+                  aria-describedby="capacity"
+                  onChange={handleInputChange}
+                  value={Number(capacity)}
+                  id="button-addon1"
+                />
+                <Button
+                  onClick={(e) => handleClick(e, "add")}
+                  variant="outline-secondary"
+                  id="button-addon1"
+                >
+                  +
+                </Button>
+                <InputGroup className="mb-3">
+                  <InputGroup.Text>€</InputGroup.Text>
+                  <FormControl
+                    aria-label="price"
+                    value={Number(price)}
+                    onChange={handlePriceChange}
+                  />
+                </InputGroup>
+                <Button as="input" type="submit" value="Enviar" />
+              </InputGroup>
+            </Form>
           </Card.Body>
         </Card>
       }
     </>
   );
 }
-
 export default TeamProfile;
-
-//   const {teamName} = useParams();
-//   const teamHandler = new APIHandler();
-
-//   const [matches, setMatches] = useState([]);
-
-//   teamHandler
-//     .getTeamId(teamName)
-//     .then((res) => {
-//       return teamHandler.getTeamMatches(res.data);
-//     })
-//     .then((res) => {
-//       setMatches(res.data.response);
-//     })
-//     .catch((err) => console.log(err));

@@ -8,6 +8,7 @@ class SignupPage extends Component {
 
     this.state = {
       username: "",
+      email: "",
       password: "",
       team_id: "",
     };
@@ -19,7 +20,12 @@ class SignupPage extends Component {
     e.preventDefault();
 
     this.authService
-      .signup(this.state.username, this.state.password, this.state.team_id)
+      .signup(
+        this.state.username,
+        this.state.password,
+        this.state.email,
+        this.state.team_id
+      )
       .then((response) => {
         this.props.storeUser(response.data);
         this.props.history.push("/");
@@ -49,6 +55,17 @@ class SignupPage extends Component {
                   name="username"
                   type="text"
                   placeholder="Elige un nombre de usuario"
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="email">
+                <Form.Label>Correo electronico</Form.Label>
+                <Form.Control
+                  onChange={this.handleInputChange}
+                  value={this.state.email}
+                  name="email"
+                  type="text"
+                  placeholder="example@gmail.com"
                 />
               </Form.Group>
 

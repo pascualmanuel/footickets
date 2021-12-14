@@ -1,7 +1,12 @@
 const APIHandler = require("../services/APIHandler.js");
 const API = new APIHandler();
+const Stripe = require("stripe");
 const router = require("express").Router();
 const Match = require("../models/Match.model");
+
+const stripe = new Stripe(
+  "sk_test_51K6CRIH1ByOTHJYIhKQvZj6tcqIVHPvbxdYFsZK3AdkM58qPTqVHVwDkgXlHC6YU83SbtAGmEoEMOKWdJw2LB9F9002TJHvtbA"
+);
 
 router.get("/league/:country", (req, res, next) => {
   const {country} = req.params;
@@ -65,4 +70,21 @@ router.get("/team/matches/:id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.post("/checkout", async (req, res) => {
+  try {
+    const {id, amount} = req.body;
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: "USD",
+      description: "Blah blah",
+      payment_method: id,
+      confirm: true,
+    });
+    console.log(req.body);
+    res.send("se hizo el pago");
+  } catch (err) {
+    console.log(err);
+    res.json({message: err});
+  }
+});
 module.exports = router;

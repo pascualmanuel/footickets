@@ -1,10 +1,38 @@
 const router = require("express").Router();
+const Match = require("../models/Match.model");
 const {isLoggedIn} = require("../middleware/isLoggedIn");
 
-router.post("/team/profile/:userId/:teamId", isLoggedIn, (req, res) => {
-  const {teamId} = req.params;
-  const {capacity, price} = req.body;
+router.get("/check-match/:id", (req, res) => {
+  const {id} = req.params;
 
-  //llamar a match.create para crear un nuevo elemento match  en la bbdd pasandole todo lo que tiene el
-  //modelo
+  Match.find({
+    matchId: id,
+  })
+    .then((match) => res.status(200).json(match))
+    .catch((err) => res.status(500).json(err));
 });
+
+router.post("/create-match", (req, res) => {
+  const {matchId, price, capacity} = req.body;
+
+  Match.create({
+    matchId,
+    price,
+    teamOwner: req.session.currentUser._id,
+    capacity,
+  })
+    .then((match) => res.status(200).json(match))
+    .catch((err) => res.status(500).json(err));
+});
+
+router.post("/update-match", (req, res) => {
+  console.log(req.body);
+  const {id, price, capacity} = req.body;
+  const match = {price, capacity};
+
+  Match.findByIdAndUpdate(id, match, {new: true})
+    .then((match) => res.status(200).json(match))
+    .catch((err) => res.status(500).json(err));
+});
+
+module.exports = router;

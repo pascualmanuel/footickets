@@ -5,22 +5,20 @@ class APIHandler {
     //Tabla de Posiciones
     this.axiosApp = axios.create({
       baseURL: "http://localhost:5005/api",
-      credentials: true,
+      withCredentials: true,
     });
   }
 
   getAllMatches = (country) => this.axiosApp.get(`/matches/league/${country}`);
   getTeamId = (name) => this.axiosApp.get(`/matches/team/${name}`);
   getTeamMatches = (id) => this.axiosApp.get(`/matches/team/matches/${id}`);
-  createMatch = (userId, matchId, capacity, price) =>
-    this.axiosApp.post(`/team/profile/create/${userId}/${matchId}`, {
-      capacity,
-      price,
-    });
-  //   getNextMatches = (leagueId, year, matchesNumber) =>
-  //     this.axiosApp.get(
-  //       `fixtures?league=${leagueId}&season=${year}&next=${matchesNumber}`
-  //     );
+  checkMatch = (matchId) =>
+    this.axiosApp.get(`/team-profile/check-match/${matchId}`);
+  createMatch = (match) =>
+    this.axiosApp.post(`/team-profile/create-match`, match);
+  createTicket = (price, matchId, number) =>
+    this.axiosApp.post(`/tickets/create-ticket/${price}/${matchId}/${number}`);
+  sendEmail = (ticketId) => this.axiosApp.post(`/checkout/finish/${ticketId}`);
 }
 
 module.exports = APIHandler;

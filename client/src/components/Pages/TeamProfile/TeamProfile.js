@@ -11,8 +11,16 @@ function TeamProfile(props) {
     teamHandler
       .getTeamMatches(props.loggedUser.team_id)
       .then((res) => {
-        // console.log("Hola", res.data);
-        setMatches(res.data.response);
+        const updatedMatches = res.data.response;
+        updatedMatches.forEach((match) => {
+          teamHandler
+            .checkMatch(match.fixture.id)
+            .then((response) => {
+              match.dbInfo = response.data;
+            })
+            .catch((err) => console.log(err));
+        });
+        return setMatches(updatedMatches);
       })
       .catch((err) => console.log(err));
   }, [props.loggedUser.team_id]);

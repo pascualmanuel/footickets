@@ -2,8 +2,10 @@ const {Schema, model} = require("mongoose");
 
 const ticketModel = new Schema(
   {
-    owner: {type: Schema.Types.ObjectId, ref: "Match"},
-    match_id: {type: Schema.Types.ObjectId, ref: "Match"},
+    owner: {type: Schema.Types.ObjectId, ref: "User"},
+    match_id: {type: String},
+    numberOfTickets: {type: Number, required: true},
+    totalPrice: {type: Number, required: true},
   },
   {
     timestamps: true,
