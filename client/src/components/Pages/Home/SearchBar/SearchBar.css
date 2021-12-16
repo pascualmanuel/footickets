@@ -159,11 +159,7 @@ h2 {
 html {
   scroll-behavior: smooth;
 }
-body {
-  margin: 0;
-  background-color: #000;
-  font-family: Arial;
-}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 100%);
