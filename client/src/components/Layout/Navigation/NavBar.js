@@ -63,9 +63,16 @@ const Navigation = ({loggedUser, storeUser}) => {
                       Últimas Compras
                     </NavDropdown.Item>
                   )} */}
+
+                  {loggedUser.role === "STANDARD" ? 
                   <NavDropdown.Item as={Link}to="/profile-user">
                     Mi perfil
-                  </NavDropdown.Item>
+                  </NavDropdown.Item> 
+                  :
+                  <NavDropdown.Item as={Link}to="/profile-user-team">
+                    Mi perfil
+                  </NavDropdown.Item> 
+                  }
                   <NavDropdown.Divider />
                   <NavDropdown.Item as={"span"} onClick={logout}>
                     Cerrar Sesion

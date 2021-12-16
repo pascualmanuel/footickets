@@ -96,7 +96,7 @@ class App extends Component {
             />
             
             <Route
-              path="/checkout/finish/:ticketId"
+              path="/finish/:ticketId"
               render={(props) => <AcceptedPayment {...props} />}
             />
             

@@ -5,7 +5,16 @@
 
 function AcceptedPayment() {
 
+
+  return (
+
     <h1>Ya se ha competado tu compra, le mandaremos un correo con mas información.</h1>
+    
+    );
+}
+    export default AcceptedPayment;
+
+    
 //   const [subject, setSubject] = useState("");
 //   const [message, setMessage] = useState("");
 
@@ -19,8 +28,8 @@ function AcceptedPayment() {
 //     axios.post("http://localhost:5005/api/checkout/finish", dataToSubmit);
 //   };
 
-//   return (
-//     <>
+// //   return (
+// //     <>
 //       <Form onSubmit={handleSubmit}>
 //         <Row className="mb-3">
 //           <Form.Group as={Col} controlId="formGridEmail">
@@ -59,6 +68,3 @@ function AcceptedPayment() {
 //       </Form>
 //     </>
 //   );
-}
-
- export default AcceptedPayment;
