@@ -19,6 +19,7 @@ class APIHandler {
   createTicket = (price, matchId, number) =>
     this.axiosApp.post(`/tickets/create-ticket/${price}/${matchId}/${number}`);
   sendEmail = (ticketId) => this.axiosApp.post(`/checkout/finish/${ticketId}`);
+  getAllTicketsMatches =()=> this.axiosApp.get(`/matches/get-matches`)
 }
 
 module.exports = APIHandler;

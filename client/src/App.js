@@ -11,6 +11,9 @@ import TeamMatches from "./components/Pages/Matches/TeamMatches";
 import TeamProfile from "./components/Pages/TeamProfile/TeamProfile";
 import Home from "./components/Pages/Home/Home";
 import AcceptedPayment from "./components/Pages/Payment/AcceptedPayment";
+import TeamTickets from "./components/Pages/Matches/TeamTickets";
+import ProfileUser from "./components/ProfileUser/profileUser";
+import ProfileUserTeam from "./components/ProfileUser/profileUserTeam";
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +57,10 @@ class App extends Component {
               )}
             />
             <Route
+              path="/tickets"
+              render={(props) => <TeamTickets {...props} />}
+            />
+            <Route
               path="/league/:country"
               render={(props) => (
                 <Matches {...props} storeUser={this.storeUser} />
@@ -73,10 +80,26 @@ class App extends Component {
                 <TeamProfile loggedUser={this.state.loggedUser} {...props} />
               )}
             />
+
+            <Route
+              path="/profile-user"
+              render={(props) => (
+                <ProfileUser loggedUser={this.state.loggedUser} {...props} />
+              )}
+            />
+
+            <Route
+              path="/profile-user-team"
+              render={(props) => (
+                <ProfileUserTeam loggedUser={this.state.loggedUser} {...props} />
+              )}
+            />
+            
             <Route
               path="/checkout/finish/:ticketId"
               render={(props) => <AcceptedPayment {...props} />}
             />
+            
           </Switch>
           {/* <h4>TODO</h4>
           <p>

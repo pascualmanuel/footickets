@@ -58,13 +58,13 @@ const Navigation = ({loggedUser, storeUser}) => {
                 </>
               ) : (
                 <>
-                  {loggedUser.role === "STANDARD" && (
+                  {/* {loggedUser.role === "STANDARD" && (
                     <NavDropdown.Item to="#action3">
                       Últimas Compras
                     </NavDropdown.Item>
-                  )}
-                  <NavDropdown.Item to="#action4">
-                    Editar perfil
+                  )} */}
+                  <NavDropdown.Item as={Link}to="/profile-user">
+                    Mi perfil
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item as={"span"} onClick={logout}>
@@ -73,6 +73,8 @@ const Navigation = ({loggedUser, storeUser}) => {
                 </>
               )}
             </NavDropdown>
+            {loggedUser && loggedUser.role === "STANDARD" && (
+              <>
             <NavDropdown title="Ligas" id="navbarScrollingDropdown">
               <NavDropdown.Item as={Link} to="/league/england">
                 Premier League
@@ -91,16 +93,21 @@ const Navigation = ({loggedUser, storeUser}) => {
               </NavDropdown.Item>
               <NavDropdown.Divider />
             </NavDropdown>
-            <Nav.Link to="#Tickets">Tickets</Nav.Link>
+            <Nav.Link as={Link} to="/tickets">Tickets</Nav.Link>
             <Nav.Link to="#Tickets"></Nav.Link>
+            </>
+              )}
             {loggedUser && loggedUser.role === "TEAM" && (
               <NavDropdown title="Mi equipo" id="navbarScrollingDropdown">
                 <NavDropdown.Item as={Link} to="/team/profile">
                   Partidos
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/#">
-                  Ventas
+                {/* <NavDropdown.Item as={Link} to="/profile-user-team">
+                  Mi perfil
                 </NavDropdown.Item>
+                <NavDropdown.Item as={"span"} onClick={logout}>
+                    Cerrar Sesion
+                  </NavDropdown.Item> */}
               </NavDropdown>
             )}
           </Nav>

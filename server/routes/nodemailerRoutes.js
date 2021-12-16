@@ -31,7 +31,6 @@ router.post("/finish/:ticketId", (req, res, next) => {
       const subject = "Compra de entradas";
       const message =
         "Enhorabuena ya tienes tus entradas en taquilla, pasate cuando quieras entre las 9 y 14 horas.";
-      console.log(ticket.match_id, "MatchId2");
 
       const matchId = ticket.match_id;
 

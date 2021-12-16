@@ -8,6 +8,30 @@ const stripe = new Stripe(
   "sk_test_51K6CRIH1ByOTHJYIhKQvZj6tcqIVHPvbxdYFsZK3AdkM58qPTqVHVwDkgXlHC6YU83SbtAGmEoEMOKWdJw2LB9F9002TJHvtbA"
 );
 
+router.get(("/get-matches"), (req, res) => {
+
+  let dbInfo = []
+
+  Match
+  .find()
+  .then((response)=> {
+    dbInfo = response
+
+    let promisesArr= dbInfo.map(match => {
+      return API
+      .getMatchInfo(match.matchId)
+      .then(res => res.data.response[0])
+    })
+
+    return Promise.all(promisesArr)
+  })
+  .then(allMatches => {
+    console.log(allMatches)
+    res.json({allMatches, dbInfo})
+  })
+  .catch((err) => console.log(err));
+})
+
 router.get("/league/:country", (req, res, next) => {
   const {country} = req.params;
 
@@ -29,13 +53,9 @@ router.get("/league/:country", (req, res, next) => {
   Promise.all([matchesResponse])
     .then((data) => {
       const [matchesResponse] = data;
-      //   const standings = positionsResponse.data.response[0].league.standings[0]; // TODO: queremos uno o todos los que haya?? el 'ultimo [0]
       const matches = matchesResponse.data.response;
-      //   console.log(matches[0].fixture.venue.name);
-      //   const allScorers = allScorersResponse.data.response;
-      //   const topScorers = allScorers.slice(0, 10);
       res.json(matches);
-      //!! Conversion a Boolean
+      
     })
     .catch((err) => console.log(err));
 });
@@ -69,6 +89,8 @@ router.get("/team/matches/:id", (req, res) => {
     .then((response) => res.json(response.data))
     .catch((err) => console.log(err));
 });
+
+
 
 router.post("/checkout", async (req, res) => {
   try {

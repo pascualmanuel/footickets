@@ -3,7 +3,9 @@
 // import {useState} from "react";
 // import axios from "axios";
 
-// function AcceptedPayment() {
+function AcceptedPayment() {
+
+    <h1>Ya se ha competado tu compra, le mandaremos un correo con mas información.</h1>
 //   const [subject, setSubject] = useState("");
 //   const [message, setMessage] = useState("");
 
@@ -57,6 +59,6 @@
 //       </Form>
 //     </>
 //   );
-// }
+}
 
-// export default AcceptedPayment;
+ export default AcceptedPayment;
