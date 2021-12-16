@@ -9,7 +9,7 @@ function Home() {
     <>
       <SearchBar />
       <br></br>
-      <h2>Busca tu entrada según tu Liga favortia</h2>
+      <h2>Busca tu entrada según tu Liga favortia!!!</h2>
       <br></br>
       <Masonary />
       <br></br>
