@@ -32,7 +32,7 @@ const CheckoutForm = (props) => {
     if (!error) {
       const {id} = paymentMethod;
       const {data} = await axios.post(
-        "http://localhost:5005/api/matches/checkout",
+        `${process.env.REACT_APP_BASE_URL}/matches/checkout`,
         {
           id,
           amount: props.total * 100,

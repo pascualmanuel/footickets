@@ -4,7 +4,8 @@ class APIHandler {
   constructor() {
     //Tabla de Posiciones
     this.axiosApp = axios.create({
-      baseURL: "http://localhost:5005/api",
+      baseURL: process.env.REACT_APP_BASE_URL,
+
       withCredentials: true,
     });
   }
@@ -19,7 +20,7 @@ class APIHandler {
   createTicket = (price, matchId, number) =>
     this.axiosApp.post(`/tickets/create-ticket/${price}/${matchId}/${number}`);
   sendEmail = (ticketId) => this.axiosApp.post(`/checkout/finish/${ticketId}`);
-  getAllTicketsMatches =()=> this.axiosApp.get(`/matches/get-matches`)
+  getAllTicketsMatches = () => this.axiosApp.get(`/matches/get-matches`);
 }
 
-module.exports = APIHandler;
+export default APIHandler;

@@ -91,33 +91,18 @@ class App extends Component {
             <Route
               path="/profile-user-team"
               render={(props) => (
-                <ProfileUserTeam loggedUser={this.state.loggedUser} {...props} />
+                <ProfileUserTeam
+                  loggedUser={this.state.loggedUser}
+                  {...props}
+                />
               )}
             />
-            
+
             <Route
               path="/finish/:ticketId"
               render={(props) => <AcceptedPayment {...props} />}
             />
-            
           </Switch>
-          {/* <h4>TODO</h4>
-          <p>
-            1- Armar vista del perfil TEAM donde ve los proximos 4 partidos en
-            casa. Añadir cantidad entradas a la venta.
-          </p>
-          <p>2- Pensar index.</p>
-          <p>
-            3- Cuando un equipo añade entradas el usuario pueda ver el stock de
-            entradas en cada partido.
-          </p>
-          <p>
-            4- Crear perfil para cada usuario Donde el usuario va a ver su
-            historial de compras. / Ventas
-          </p>
-          <p>5- Pasarela de pago.</p>
-          <p>6- Configurar Nodemailer.</p>
-          <p>7- </p> */}
         </main>
       </>
     );
