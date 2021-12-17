@@ -10,6 +10,7 @@ import {
   Form,
 } from "react-bootstrap";
 import APIHandler from "../../../../services/api.service";
+import {useHistory} from "react-router-dom";
 
 function TeamProfile(props) {
   const teamProfileService = new APIHandler();
@@ -35,6 +36,8 @@ function TeamProfile(props) {
     console.log(props.match.fixture.id);
   };
 
+  const history = useHistory();
+
   const handleInputChange = (e) => {
     setCapacity(e.currentTarget.value);
   };
@@ -54,6 +57,7 @@ function TeamProfile(props) {
             .createMatch({capacity, price, matchId: props.match.fixture.id})
             .then((match) => console.log(match.data))
             .catch((err) => console.log(err));
+          history.push("/");
         } else {
           teamProfileService
             .updateMatch({
@@ -64,6 +68,7 @@ function TeamProfile(props) {
             .then((res) => {
               setCapacity(res.data.capacity);
               setPrice(res.data.price);
+              history.push("/");
             })
             .catch((err) => console.log(err));
         }
