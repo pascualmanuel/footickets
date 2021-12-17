@@ -1,6 +1,7 @@
 import APIHandler from "../../../services/api.service";
 import {useState, useEffect} from "react";
 import MatchCard from "../TeamProfile/MatchCard/MatchCard";
+import {Spinner} from "react-bootstrap";
 
 const teamHandler = new APIHandler();
 
@@ -25,12 +26,18 @@ function TeamProfile(props) {
       .catch((err) => console.log(err));
   }, [props.loggedUser.team_id]);
 
-  return (
+  return matches.length === 0 ? (
+    <Spinner animation="border" role="status" id="pluswrap">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+  ) : (
     <>
-      <h2> Proximos Partidos </h2>
-      {matches.map((match) => (
-        <>{<MatchCard match={match}></MatchCard>}</>
-      ))}
+      <h2 className="title"> Proximos Partidos </h2>
+      <div className="contenedor">
+        {matches.map((match) => (
+          <>{<MatchCard match={match}></MatchCard>}</>
+        ))}
+      </div>
     </>
   );
 }

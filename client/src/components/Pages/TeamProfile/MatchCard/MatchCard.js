@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import {formatDate} from "../../../../utils";
 import {
   Card,
   ListGroupItem,
@@ -9,9 +10,6 @@ import {
   Form,
 } from "react-bootstrap";
 import APIHandler from "../../../../services/api.service";
-
-// import {useParams} from "react-router";
-// import {Card, ListGroupItem, ListGroup} from "react-bootstrap";
 
 function TeamProfile(props) {
   const teamProfileService = new APIHandler();
@@ -95,44 +93,49 @@ function TeamProfile(props) {
             <Card.Text></Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroupItem>{props.match?.fixture.date}</ListGroupItem>
+            <ListGroupItem>
+              {formatDate(new Date(props.match?.fixture.date))}
+            </ListGroupItem>
             <ListGroupItem>{props.match?.league.round}</ListGroupItem>
             <ListGroupItem>{props.match?.fixture.venue.name}</ListGroupItem>
           </ListGroup>
           <Card.Body>
             <Form onSubmit={handleSubmit}>
-              <InputGroup className="mb-3">
-                <Button
-                  onClick={(e) => handleClick(e, "remove")}
-                  variant="outline-secondary"
-                  id="button-addon1"
-                >
-                  -
-                </Button>
-                <FormControl
-                  aria-label="capacity"
-                  aria-describedby="capacity"
-                  onChange={handleInputChange}
-                  value={Number(capacity)}
-                  id="button-addon1"
-                />
-                <Button
-                  onClick={(e) => handleClick(e, "add")}
-                  variant="outline-secondary"
-                  id="button-addon1"
-                >
-                  +
-                </Button>
+              <div className="contador">
                 <InputGroup className="mb-3">
-                  <InputGroup.Text>€</InputGroup.Text>
+                  <Button
+                    onClick={(e) => handleClick(e, "remove")}
+                    variant="outline-secondary"
+                    id="button-addon1"
+                  >
+                    -
+                  </Button>
                   <FormControl
-                    aria-label="price"
-                    value={Number(price)}
-                    onChange={handlePriceChange}
+                    aria-label="capacity"
+                    aria-describedby="capacity"
+                    onChange={handleInputChange}
+                    value={Number(capacity)}
+                    id="button-addon1"
                   />
+                  <Button
+                    onClick={(e) => handleClick(e, "add")}
+                    variant="outline-secondary"
+                    id="button-addon1"
+                  >
+                    +
+                  </Button>
                 </InputGroup>
-                <Button as="input" type="submit" value="Enviar" />
+              </div>
+
+              <InputGroup className="mb-3" id="ticketprice">
+                <InputGroup.Text>€</InputGroup.Text>
+                <FormControl
+                  aria-label="price"
+                  value={Number(price)}
+                  onChange={handlePriceChange}
+                />
               </InputGroup>
+              <Button as="input" id="pay" type="submit" value="Enviar" />
             </Form>
           </Card.Body>
         </Card>

@@ -1,4 +1,5 @@
 import {useLocation, useHistory} from "react-router-dom";
+import {formatDate} from "../../../../utils/index";
 import {
   Card,
   ListGroupItem,
@@ -21,13 +22,7 @@ function MatchesDetails(props) {
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [matchId, setMatchId] = useState("");
-  let [total, setTotal] = useState(0);
-
-  let calculateTotal = (price, quantity) => {
-    setTotal(price * quantity);
-  };
-
-  const history = useHistory();
+  let [total, setTotal] = useState(price * quantity);
 
   const matchService = new APIHandler();
 
@@ -44,11 +39,11 @@ function MatchesDetails(props) {
 
   const handleClick = (e, operation) => {
     if (operation === "add") {
-      setQuantity(Number(quantity) + 1);
+      setTotal(price * (quantity + 1));
+      setQuantity(quantity + 1);
     } else {
       quantity === 0 ? setQuantity(0) : setQuantity(Number(quantity) - 1);
     }
-    calculateTotal(price, quantity);
   };
 
   const handleInputChange = (e) => {
@@ -60,24 +55,32 @@ function MatchesDetails(props) {
       {
         <Card style={{width: "18rem"}}>
           <Card.Body>
-            <Card.Title>
-              <img
-                src={match?.teams.home.logo}
-                alt="hola"
-                style={{width: "20px"}}
-              />
-              {match?.teams.home.name} vs
-              <img
-                src={match?.teams.away.logo}
-                alt="hola"
-                style={{width: "20px"}}
-              />
-              {match?.teams.away.name}
+            <Card.Title className="title-card">
+              <div>
+                <img
+                  src={match?.teams.home.logo}
+                  alt="hola"
+                  style={{width: "20px"}}
+                />
+                {match?.teams.home.name}
+              </div>
+              vs
+              <div>
+                <img
+                  src={match?.teams.away.logo}
+                  alt="hola"
+                  style={{width: "20px"}}
+                />
+                {match?.teams.away.name}
+              </div>
             </Card.Title>
             <Card.Text></Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroupItem>{match?.fixture.date}</ListGroupItem>
+            <ListGroupItem>
+              {formatDate(new Date(match?.fixture.date))}
+            </ListGroupItem>
+
             <ListGroupItem>{match?.league.round}</ListGroupItem>
             <ListGroupItem>{match?.fixture.venue.name}</ListGroupItem>
             <ListGroupItem>Precio: {price}</ListGroupItem>

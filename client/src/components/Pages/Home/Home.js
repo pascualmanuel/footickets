@@ -1,6 +1,6 @@
 import React from "react";
 
-import Masonary from "./Masonary/Masonary";
+// import Masonary from "./Masonary/Masonary";
 import SearchBar from "./SearchBar/SearchBar";
 
 function Home() {

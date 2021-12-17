@@ -48,7 +48,7 @@ class Profile extends Component {
 
               {this.state.tickets.length !== 0 ? (
                 this.state.tickets.map((ticket) => {
-                  console.log(ticket.numberOfTickets);
+                  console.log("holaaa", ticket.numberOfTickets);
                   let total = ticket.numberOfTickets * ticket.totalPrice;
 
                   return (

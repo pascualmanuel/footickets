@@ -69,8 +69,10 @@ function BuyerMatchCard(props) {
               </Card.Text>
             ) : (
               <>
-                <p>Se el primero en enterarte</p>
-                <p className="button-avisame"> Avisame </p>
+                {/* <p>Se el primero en enterarte</p> */}
+                <br></br>
+                <br></br>
+                <p className="button-avisame"> No hay entradas disponibles </p>
               </>
             )}
           </Card.Body>

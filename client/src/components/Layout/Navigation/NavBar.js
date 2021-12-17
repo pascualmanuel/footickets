@@ -98,7 +98,6 @@ const Navigation = ({loggedUser, storeUser}) => {
                   <NavDropdown.Item as={Link} to="/league/france">
                     League 1
                   </NavDropdown.Item>
-                  <NavDropdown.Divider />
                 </NavDropdown>
                 <Nav.Link as={Link} to="/tickets">
                   Tickets
