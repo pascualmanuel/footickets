@@ -21,6 +21,8 @@ class APIHandler {
     this.axiosApp.post(`/tickets/create-ticket/${price}/${matchId}/${number}`);
   sendEmail = (ticketId) => this.axiosApp.post(`/checkout/finish/${ticketId}`);
   getAllTicketsMatches = () => this.axiosApp.get(`/matches/get-matches`);
+  getMatchInfo = (matchId) =>
+    this.axiosApp.get(`/matches/get-match-info/${matchId}`);
 }
 
 export default APIHandler;

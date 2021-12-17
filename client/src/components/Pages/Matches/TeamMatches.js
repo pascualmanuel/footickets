@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import {useParams} from "react-router";
 import APIHandler from "../../../services/api.service";
 import BuyerMatchCard from "./BuyerMatchCard";
+import {Spinner} from "react-bootstrap";
 
 const teamHandler = new APIHandler();
 
@@ -22,12 +23,18 @@ function TeamMatches() {
       .catch((err) => console.log(err));
   }, [teamName]);
 
-  return (
+  return matches.length === 0 ? (
+    <Spinner animation="border" role="status" id="pluswrap">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+  ) : (
     <>
       <h2> Proximos Partidos </h2>
-      {matches.map((match) => (
-        <BuyerMatchCard match={match} />
-      ))}
+      <div className="container">
+        {matches.map((match) => {
+          return <BuyerMatchCard match={match} />;
+        })}
+      </div>
     </>
   );
 }

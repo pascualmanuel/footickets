@@ -2,6 +2,7 @@ import {Card, ListGroup} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import APIHandler from "../../../services/api.service";
+import "./BuyerMatchCard.css";
 
 function BuyerMatchCard(props) {
   const match = props.match;
@@ -21,49 +22,61 @@ function BuyerMatchCard(props) {
   }, []);
 
   return (
-    <Card style={{width: "18rem"}}>
-      <Card.Body>
-        <Card.Title>
-          <img
-            src={match?.teams.home.logo}
-            alt="hola"
-            style={{width: "20px"}}
-          />
-          {match?.teams.home.name}
-          <br />
-          <img
-            src={match?.teams.away.logo}
-            alt="hola"
-            style={{width: "20px"}}
-          />
-          {match?.teams.away.name}
-        </Card.Title>
-      </Card.Body>
-
-      <ListGroup className="list-group-flush"></ListGroup>
-      {capacity !== 0 ? (
-        <Card.Text>
-          {capacity} entradas disponibles <br></br> €{price}
-        </Card.Text>
-      ) : (
-        <p> No hay entradas disponibles </p>
-      )}
-      <Card.Body>
-        <Card.Link href="#"></Card.Link>
-        <Card.Link>
-          <Link
-            to={{
-              pathname: "/match/details",
-              state: {
-                match: match,
-              },
-            }}
-          >
-            Ver Detalles
-          </Link>
-        </Card.Link>
-      </Card.Body>
-    </Card>
+    <>
+      {
+        <Card style={{width: "18rem"}}>
+          <Card.Body>
+            <Card.Title>
+              <h3 className="vs">
+                {" "}
+                <img
+                  src={match?.teams.home.logo}
+                  alt="hola"
+                  style={{width: "20px"}}
+                />
+                {match?.teams.home.name}
+              </h3>
+              <h3 className="vs">
+                {" "}
+                <img
+                  src={match?.teams.away.logo}
+                  alt="hola"
+                  style={{width: "20px"}}
+                />
+                {match?.teams.away.name}
+              </h3>
+            </Card.Title>
+          </Card.Body>
+          <ListGroup className="list-group-flush"></ListGroup>
+          <Card.Body>
+            {capacity !== 0 ? (
+              <Card.Text>
+                <h3 className="precio">€{price}</h3>
+                <br></br>
+                <Card.Link>
+                  <Link
+                    className="button-details"
+                    to={{
+                      pathname: "/match/details",
+                      state: {
+                        match: match,
+                      },
+                    }}
+                  >
+                    Entradas
+                  </Link>
+                </Card.Link>
+              </Card.Text>
+            ) : (
+              <>
+                <p>Se el primero en enterarte</p>
+                <p className="button-avisame"> Avisame </p>
+              </>
+            )}
+          </Card.Body>
+        </Card>
+      }
+    </>
   );
 }
 

@@ -1,5 +1,14 @@
 import React, {Component} from "react";
-import {Container, Form, Button, Row, Col} from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  Row,
+  Col,
+  Card,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
 import AuthService from "../../../services/auth.service";
 
 class SignupPage extends Component {
@@ -41,14 +50,20 @@ class SignupPage extends Component {
 
   render() {
     return (
-      <Container>
+      <>
         <Row>
           <Col md={{span: 4, offset: 4}}>
-            <h2>Registro</h2>
+            <br></br>
+            <br></br>
+            <br></br>
 
             <Form onSubmit={this.handleSubmit}>
+              <h2> Registrarse</h2>
+              <hr></hr>
+              <br></br>
+              <br></br>
               <Form.Group className="mb-3" controlId="username">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Nombre de Usuario</Form.Label>
                 <Form.Control
                   onChange={this.handleInputChange}
                   value={this.state.username}
@@ -65,21 +80,21 @@ class SignupPage extends Component {
                   value={this.state.email}
                   name="email"
                   type="text"
-                  placeholder="example@gmail.com"
+                  placeholder="ejemplo@gmail.com"
                 />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Contraseña</Form.Label>
                 <Form.Control
                   onChange={this.handleInputChange}
                   value={this.state.password}
                   name="password"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Contraseña"
                 />
               </Form.Group>
-
+              {/* 
               <Form.Group className="mb-3" controlId="team_id">
                 <Form.Label>IdTeam</Form.Label>
                 <Form.Control
@@ -89,15 +104,15 @@ class SignupPage extends Component {
                   type="number"
                   placeholder="prueba"
                 />
-              </Form.Group>
+              </Form.Group> */}
 
               <Button variant="primary" type="submit">
-                Submit
+                Registrarse
               </Button>
             </Form>
           </Col>
         </Row>
-      </Container>
+      </>
     );
   }
 }

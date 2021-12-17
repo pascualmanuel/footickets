@@ -26,7 +26,9 @@ h2 {
   -ms-flex-align: center;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  background: url("../../..//../assets/fondo.webp");
+  background: url("../../..//../assets/fondo_copy.png");
+  /* background: url("https://i.pinimg.com/originals/a0/8b/13/a08b134d449634e94d0dc7b3e729cbb9.jpg"); */
+
   background-size: cover;
   background-position: center center;
   padding: 15px;
@@ -287,6 +289,7 @@ html {
 }
 .masonry .grid__tag {
   background-color: rgba(255, 255, 255, 0.8);
+  opacity: 0.6;
   color: #333;
   border-radius: 5px;
   padding: 5px 15px;

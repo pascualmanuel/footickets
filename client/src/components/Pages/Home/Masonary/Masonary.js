@@ -59,6 +59,50 @@ function Masonary() {
             />
           </div>
         </Link>
+        <Link to={`/league/italy`}>
+          <div class="brick">
+            <img
+              src={
+                "https://cdn.netnews.com.mt/wp-content/uploads/2021/11/19230559/serie-a.jpg"
+              }
+              alt="Serie A"
+              title="Serie A"
+            />
+          </div>
+        </Link>
+        <Link to={`/league/italy`}>
+          <div class="brick">
+            <img
+              src={
+                "https://cdn.netnews.com.mt/wp-content/uploads/2021/11/19230559/serie-a.jpg"
+              }
+              alt="Serie A"
+              title="Serie A"
+            />
+          </div>
+        </Link>
+        <Link to={`/league/germany`}>
+          <div class="brick">
+            <img
+              src={
+                "https://img.bundesliga.com/tachyon/sites/2/2019/02/Spielball-Derbystar-1200x675.jpg?crop=0px,0px,1200px,675px&fit=1140"
+              }
+              alt="germany"
+              title="germany"
+            />
+          </div>
+        </Link>
+        <Link to={`/league/germany`}>
+          <div class="brick">
+            <img
+              src={
+                "https://img.bundesliga.com/tachyon/sites/2/2019/02/Spielball-Derbystar-1200x675.jpg?crop=0px,0px,1200px,675px&fit=1140"
+              }
+              alt="germany"
+              title="germany"
+            />
+          </div>
+        </Link>
         <Link to={`/league/germany`}>
           <div class="brick">
             <img

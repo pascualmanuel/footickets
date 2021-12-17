@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
+
 import "./Payment.css";
 import {loadStripe} from "@stripe/stripe-js";
+
 import {
   Elements,
   CardElement,
@@ -10,7 +12,6 @@ import {
 } from "@stripe/react-stripe-js";
 import {useHistory} from "react-router-dom";
 import APIHandler from "../../../services/api.service";
-// import MatchDetails from "../../Pages/Matches/MatchDetails/MatchDetails";
 
 const stripePromise = loadStripe(
   "pk_test_51K6CRIH1ByOTHJYIK1GUeHbZBB9fDj0e6pgIqEMJzBCCAhBNTi5sAFS5Sp8o4wczaUvt0HkIVgt5lL7kE1HMiBXI00OYrBqhn6"
@@ -56,10 +57,15 @@ const CheckoutForm = (props) => {
   const history = useHistory();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit">Comprar</button>
-    </form>
+    <>
+      <form className="form-control" onSubmit={handleSubmit}>
+        <CardElement />
+
+        <button className="btn btn-success" id="pay" type="submit">
+          Pagar
+        </button>
+      </form>
+    </>
   );
 };
 

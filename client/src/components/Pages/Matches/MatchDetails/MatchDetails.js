@@ -6,9 +6,11 @@ import {
   Button,
   FormControl,
   InputGroup,
+  Form,
 } from "react-bootstrap";
 import Payment from "../../Payment/Payment";
 import {useState, useEffect} from "react";
+
 import APIHandler from "../../../../services/api.service";
 
 function MatchesDetails(props) {
@@ -54,10 +56,7 @@ function MatchesDetails(props) {
   };
 
   return (
-    <>
-      <h1>
-        {match?.teams.home.name} vs {match?.teams.away.name}
-      </h1>
+    <div className="contenedor">
       {
         <Card style={{width: "18rem"}}>
           <Card.Body>
@@ -86,34 +85,40 @@ function MatchesDetails(props) {
               Últimas {capacity} entradas disponibles
             </ListGroupItem>
           </ListGroup>
-          <InputGroup className="mb-3">
-            <Button
-              onClick={(e) => handleClick(e, "remove")}
-              variant="outline-secondary"
-              id="button-addon1"
-            >
-              -
-            </Button>
-            <FormControl
-              aria-label="capacity"
-              aria-describedby="capacity"
-              onChange={handleInputChange}
-              value={Number(quantity)}
-              id="button-addon1"
-            />
-            <Button
-              onClick={(e) => handleClick(e, "add")}
-              variant="outline-secondary"
-              id="button-addon1"
-            >
-              +
-            </Button>
-            Total: {total}
-          </InputGroup>
+          <div className="contador">
+            <InputGroup className="mb-3">
+              <Button
+                onClick={(e) => handleClick(e, "remove")}
+                variant="outline-secondary"
+                id="button-addon1"
+              >
+                -
+              </Button>
+              <FormControl
+                aria-label="capacity"
+                aria-describedby="capacity"
+                onChange={handleInputChange}
+                value={Number(quantity)}
+                id="button-addon1"
+              />
+              <Button
+                onClick={(e) => handleClick(e, "add")}
+                variant="outline-secondary"
+                id="button-addon1"
+              >
+                +
+              </Button>
+            </InputGroup>
+          </div>
+          <h3 className="price"> Total: €{total} </h3>
+          <Form.Control
+            type="text"
+            placeholder="Nombre del Titular de la tarjeta"
+          />
           <Payment price={total} matchId={matchId} number={quantity} />
         </Card>
       }
-    </>
+    </div>
   );
 }
 

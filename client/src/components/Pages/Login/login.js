@@ -35,16 +35,20 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <Container>
+      <>
+        <br></br>
+        <br></br>
+        <br></br>
         <Row>
           <Col md={{span: 4, offset: 4}}>
-            <h2>Login</h2>
-
-            <hr />
+            <h2> Iniciar Sesion</h2>
+            <hr></hr>
+            <br></br>
+            <br></br>
 
             <Form onSubmit={this.handleSubmit}>
               <Form.Group className="mb-3" controlId="username">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Nombre de Usuario</Form.Label>
                 <Form.Control
                   onChange={this.handleInputChange}
                   value={this.state.username}
@@ -55,23 +59,23 @@ class LoginPage extends Component {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Contraseña</Form.Label>
                 <Form.Control
                   onChange={this.handleInputChange}
                   value={this.state.password}
                   name="password"
                   type="password"
-                  placeholder="Password"
+                  placeholder="*******"
                 />
               </Form.Group>
 
               <Button variant="primary" type="submit">
-                Submit
+                Iniciar Sesión
               </Button>
             </Form>
           </Col>
         </Row>
-      </Container>
+      </>
     );
   }
 }

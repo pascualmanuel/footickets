@@ -8,29 +8,27 @@ const stripe = new Stripe(
   "sk_test_51K6CRIH1ByOTHJYIhKQvZj6tcqIVHPvbxdYFsZK3AdkM58qPTqVHVwDkgXlHC6YU83SbtAGmEoEMOKWdJw2LB9F9002TJHvtbA"
 );
 
-router.get(("/get-matches"), (req, res) => {
+router.get("/get-matches", (req, res) => {
+  let dbInfo = [];
 
-  let dbInfo = []
+  Match.find()
+    .then((response) => {
+      dbInfo = response;
 
-  Match
-  .find()
-  .then((response)=> {
-    dbInfo = response
+      let promisesArr = dbInfo.map((match) => {
+        return API.getMatchInfo(match.matchId).then(
+          (res) => res.data.response[0]
+        );
+      });
 
-    let promisesArr= dbInfo.map(match => {
-      return API
-      .getMatchInfo(match.matchId)
-      .then(res => res.data.response[0])
+      return Promise.all(promisesArr);
     })
-
-    return Promise.all(promisesArr)
-  })
-  .then(allMatches => {
-    console.log(allMatches)
-    res.json({allMatches, dbInfo})
-  })
-  .catch((err) => console.log(err));
-})
+    .then((allMatches) => {
+      console.log(allMatches);
+      res.json({allMatches, dbInfo});
+    })
+    .catch((err) => console.log(err));
+});
 
 router.get("/league/:country", (req, res, next) => {
   const {country} = req.params;
@@ -55,7 +53,6 @@ router.get("/league/:country", (req, res, next) => {
       const [matchesResponse] = data;
       const matches = matchesResponse.data.response;
       res.json(matches);
-      
     })
     .catch((err) => console.log(err));
 });
@@ -90,8 +87,6 @@ router.get("/team/matches/:id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-
-
 router.post("/checkout", async (req, res) => {
   try {
     const {id, amount} = req.body;
@@ -103,10 +98,18 @@ router.post("/checkout", async (req, res) => {
       confirm: true,
     });
     console.log(req.body);
-    res.send("se hizo el pago");
   } catch (err) {
     console.log(err);
     res.json({message: err});
   }
 });
+
+router.get("/get-match-info/:matchId", (req, res) => {
+  const {matchId} = req.params;
+
+  API.getMatchInfo(Number(matchId))
+    .then((response) => res.json(response.data))
+    .catch((err) => console.log(err));
+});
+
 module.exports = router;

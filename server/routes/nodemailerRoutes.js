@@ -41,7 +41,7 @@ router.post("/finish/:ticketId", (req, res, next) => {
         to: `${email}`,
         subject: `${subject}`,
         text: `${message}`,
-        html: `<b>${message} MatchID</b>  `,
+        html: `<b>${message} </b>  `,
       });
     });
 });
