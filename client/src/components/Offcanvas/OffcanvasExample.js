@@ -1,5 +1,7 @@
-import Offcanvas from "react-bootstrap/Offcanvas";
+import React from "react";
+import Offcanvas from "react-bootstrap/OffCanvas";
 import {useState, Button} from "react";
+import {render} from "react-dom";
 
 function OffCanvasExample({name, ...props}) {
   const [show, setShow] = useState(false);
@@ -24,5 +26,6 @@ function OffCanvasExample({name, ...props}) {
     </>
   );
 }
+render(<OffCanvasExample />);
 
 export default OffCanvasExample;

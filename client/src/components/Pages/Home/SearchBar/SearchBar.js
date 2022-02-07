@@ -24,7 +24,7 @@ function SearchBar() {
           aria-label="Search"
         >
           <fieldset>
-            <legend>Busca tu entrada por tu equipo favortio</legend>
+            <legend>Busca tu entrada por tu equipo favorito</legend>
             <div class="inner-form">
               <div class="input-field">
                 <button class="btn-search">
