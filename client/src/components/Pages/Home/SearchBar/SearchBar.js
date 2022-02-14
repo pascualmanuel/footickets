@@ -42,7 +42,7 @@ function SearchBar() {
                 <input
                   id="search"
                   type="text"
-                  placeholder=""
+                  placeholder="Real Madrid"
                   name="teamName"
                   value={teamName}
                   onChange={handleChange}
