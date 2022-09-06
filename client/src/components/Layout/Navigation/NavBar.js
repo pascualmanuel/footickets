@@ -22,7 +22,6 @@ const Navigation = ({loggedUser, storeUser}) => {
       .then((response) => storeUser(null))
       .catch((err) => console.log(err));
   };
-
   const [teamName, setTeamName] = useState("");
 
   const handleChange = (e) => {
