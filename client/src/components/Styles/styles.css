@@ -1,0 +1,25 @@
+a {
+  text-decoration: none !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: black !important;
+}
+
+.btn-primary {
+  background-color: #008cba !important;
+  border-color: rgba(0, 0, 0, 0) !important;
+  color: white !important;
+  width: 60% !important;
+  border-radius: 10px !important;
+}
+#login-button {
+  width: 135px !important;
+  border-radius: 4px !important;
+}
+
+.auth-cont {
+  display: flex;
+  justify-content: center;
+}

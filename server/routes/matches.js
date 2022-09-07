@@ -30,6 +30,8 @@ router.get("/get-matches", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+///Copiado ya de todofutbol...
+
 router.get("/league/:country", (req, res, next) => {
   const {country} = req.params;
 
@@ -40,13 +42,16 @@ router.get("/league/:country", (req, res, next) => {
     italy: 135,
     france: 61,
     germany: 78,
+    brazil: 71,
+    mexico: 262,
+    uruguay: 268,
   };
 
   let leagueId = leagueMapper[country];
-  const year = 2021;
-  const matchesNumber = 18;
+  // const year = 2021;
+  const matchesNumber = 12;
 
-  const matchesResponse = API.getNextMatches(leagueId, year, matchesNumber);
+  const matchesResponse = API.getNextMatches(leagueId, matchesNumber);
 
   Promise.all([matchesResponse])
     .then((data) => {
@@ -56,6 +61,51 @@ router.get("/league/:country", (req, res, next) => {
     })
     .catch((err) => console.log(err));
 });
+
+router.get("/next-matches/:country", (req, res, next) => {
+  const {country} = req.params;
+
+  const leagueMapper = {
+    spain: 140,
+    argentina: 128,
+    england: 39,
+    italy: 135,
+    france: 61,
+    germany: 78,
+    brazil: 71,
+    mexico: 262,
+    uruguay: 268,
+  };
+
+  let curr = new Date(); // get current date
+  let first = curr.getDate() - curr.getDay() + 4; // First day is the day of the month - the day of the week
+  let last = first + 5; // last day is the first day + 6
+
+  let thursday = new Date(curr.setDate(first));
+  let tuesday = new Date(curr.setDate(last));
+
+  const firstDay = format(thursday, "yyyy-MM-dd");
+  const lastDay = format(tuesday, "yyyy-MM-dd");
+  console.log("firstDay", firstDay);
+  console.log("lastDay", lastDay);
+
+  let leagueId = leagueMapper[country];
+  const year = 2022;
+  const matchesNumber = 10;
+
+  const matchesResponse = API.getNextMatches(leagueId, matchesNumber);
+
+  Promise.all([matchesResponse])
+    .then((data) => {
+      console.log(data, "im dataaa");
+      const [matchesResponse] = data;
+      const matches = matchesResponse.data.response;
+      res.json(matches);
+    })
+    .catch((err) => console.log(err));
+});
+
+///||||Copiado ya de todofutbol lo de arriba.
 
 router.get("/match/:id", (req, res) => {
   const {id} = req.params;
@@ -86,6 +136,21 @@ router.get("/team/matches/:id", (req, res) => {
     .then((response) => res.json(response.data))
     .catch((err) => console.log(err));
 });
+
+///////////////////////////////////////////////
+
+router.get("/team-info/:name", (req, res) => {
+  const {name} = req.params;
+  console.log("yo soy el name: ", name);
+  const teamsAPI = new APIHandler();
+
+  teamsAPI
+    .getTeamInfo(name)
+    .then((response) => res.json(response.data))
+    .catch((err) => console.log(err));
+});
+
+///////////////////////////////////////////
 
 router.post("/checkout", async (req, res) => {
   try {

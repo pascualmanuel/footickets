@@ -1,8 +1,9 @@
-import {Card, ListGroup} from "react-bootstrap";
+import {Card, ListGroup, Spinner} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useState, useEffect} from "react";
 import APIHandler from "../../../services/api.service";
 import "./BuyerMatchCard.css";
+import {formatDate} from "../../../utils/index";
 
 function BuyerMatchCard(props) {
   const match = props.match;
@@ -21,37 +22,52 @@ function BuyerMatchCard(props) {
       .catch((err) => console.log(err));
   }, []);
 
-  return (
+  // console.log(match, "soy console.logde matchs");
+
+  return match === 0 ? (
+    <>
+      <Spinner animation="border" role="status" id="pluswrap">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    </>
+  ) : (
     <>
       {
-        <Card style={{width: "18rem"}}>
+        <Card style={{width: "18rem", margin: "20px"}}>
           <Card.Body>
             <Card.Title>
-              <h3 className="vs">
-                {" "}
-                <img
-                  src={match?.teams.home.logo}
-                  alt="hola"
-                  style={{width: "20px"}}
-                />
-                {match?.teams.home.name}
-              </h3>
-              <h3 className="vs">
-                {" "}
-                <img
-                  src={match?.teams.away.logo}
-                  alt="hola"
-                  style={{width: "20px"}}
-                />
-                {match?.teams.away.name}
-              </h3>
+              <p className="vs">
+                <Link to={`/matches/team/${match?.teams.home.name}`}>
+                  <img
+                    src={match?.teams.home.logo}
+                    alt="hola"
+                    className="team-logo"
+                  />
+                  {match?.teams.home.name}
+                </Link>
+              </p>
+              <p className="vs">
+                <Link to={`/matches/team/${match?.teams.away.name}`}>
+                  <img
+                    src={match?.teams.away.logo}
+                    alt="hola"
+                    className="team-logo"
+                  />
+                  {match?.teams.away.name}
+                </Link>
+              </p>
+              <p className="more-info">
+                {formatDate(new Date(match?.fixture.date))}
+              </p>
+              <p className="more-info">{match?.league.name}</p>
+              <p className="more-info">{match?.fixture.venue.name}</p>
             </Card.Title>
           </Card.Body>
           <ListGroup className="list-group-flush"></ListGroup>
           <Card.Body>
             {capacity !== 0 ? (
               <Card.Text>
-                <h3 className="precio">€{price}</h3>
+                <p className="precio"> Precio €{price}</p>
                 <br></br>
                 <Card.Link>
                   <Link
@@ -69,10 +85,9 @@ function BuyerMatchCard(props) {
               </Card.Text>
             ) : (
               <>
-                {/* <p>Se el primero en enterarte</p> */}
                 <br></br>
                 <br></br>
-                <p className="button-avisame"> No hay entradas disponibles </p>
+                <p className="button-avisame">No hay entradas disponibles</p>
               </>
             )}
           </Card.Body>

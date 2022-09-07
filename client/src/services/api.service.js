@@ -23,6 +23,7 @@ class APIHandler {
   getAllTicketsMatches = () => this.axiosApp.get(`/matches/get-matches`);
   getMatchInfo = (matchId) =>
     this.axiosApp.get(`/matches/get-match-info/${matchId}`);
+  getTeamInfo = (name) => this.axiosApp.get(`/matches/team-info/${name}`);
 }
 
 export default APIHandler;

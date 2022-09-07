@@ -3,17 +3,18 @@ import {useParams} from "react-router";
 import APIHandler from "../../../services/api.service";
 import BuyerMatchCard from "./BuyerMatchCard";
 import {Spinner} from "react-bootstrap";
+import "../../Styles/styles.css";
 
 const teamHandler = new APIHandler();
 
 function TeamMatches() {
   const {teamName} = useParams();
-
   const [matches, setMatches] = useState([]);
 
   useEffect(() => {
     teamHandler
       .getTeamId(teamName)
+
       .then((res) => {
         return teamHandler.getTeamMatches(res.data);
       })
@@ -23,13 +24,39 @@ function TeamMatches() {
       .catch((err) => console.log(err));
   }, [teamName]);
 
-  return matches.length === 0 ? (
-    <Spinner animation="border" role="status" id="pluswrap">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
+  const [teams, setTeamInfo] = useState([]);
+
+  useEffect(() => {
+    teamHandler
+      .getTeamInfo(teamName)
+
+      .then((res) => {
+        setTeamInfo(res.data.response[0]);
+      })
+      .catch((err) => console.log(err));
+  }, [teamName]);
+
+  console.log(teams, "quee");
+  console.log(teamName, "quee");
+  // console.log("hola!!");
+
+  return matches.length === 0 || teams.length === 0 ? (
+    <>
+      <Spinner animation="border" role="status" id="pluswrap">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    </>
   ) : (
     <>
-      <h2> Proximos Partidos </h2>
+      <br></br>
+      <div className="logo-contenedor">
+        <div className="logo-radius">
+          <img src={teams?.team.logo} alt="Logo" className="title-img" />
+        </div>
+        <h2 style={{marginLeft: "15px"}}>{teamName}</h2>
+      </div>
+      <br></br>
+
       <div className="container">
         {matches.map((match) => {
           return <BuyerMatchCard match={match} />;

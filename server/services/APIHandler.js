@@ -12,10 +12,8 @@ class APIHandler {
     });
   }
 
-  getNextMatches = (leagueId, year, matchesNumber) =>
-    this.axiosApp.get(
-      `fixtures?league=${leagueId}&season=${year}&next=${matchesNumber}`
-    );
+  getNextMatches = (leagueId, matchesNumber) =>
+    this.axiosApp.get(`fixtures?league=${leagueId}&next=${matchesNumber}`);
 
   getPositions = (leagueId, year) =>
     this.axiosApp.get(`standings?league=${leagueId}&season=${year}`);
@@ -23,7 +21,7 @@ class APIHandler {
   getLeagues = (country) =>
     this.axiosApp.get(`leagues?country=${country}&type=league`);
 
-  getTeams = (id) => this.axiosApp.get(`teams?league=${id}&season=2021`);
+  getTeams = (id) => this.axiosApp.get(`teams?league=${id}&season=2022`);
 
   getUserTeam = (id) => this.axiosApp.get(`teams?id=${id}`);
 
@@ -40,7 +38,9 @@ class APIHandler {
   getLastMatches = (leagueId, teamId) =>
     this.axiosApp.get(`fixtures?league=${leagueId}&team=${teamId}&last=5`);
 
-  getTeamInfo = (id) => this.axiosApp.get(`teams?=${id}`);
+  getTeamInfo = (name) => this.axiosApp.get(`teams?search=${name}`);
+
+  // getTeamInfo = (id) => this.axiosApp.get(`teams?=${id}`);
 
   getChampionsLeague = () =>
     this.axiosApp.get(`standings?season=2021&league=2`);

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Logo from "../../../assets/ft-logo.png";
 import {Link} from "react-router-dom";
 import AuthService from "../../../services/auth.service";
-
+import "../../Styles/styles.css";
 import {
   Button,
   Container,
@@ -32,6 +32,8 @@ const Navigation = ({loggedUser, storeUser}) => {
     e.preventDefault();
   };
 
+  const userNameProfile = !loggedUser ? "Mi Perfil" : loggedUser.username;
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -45,7 +47,7 @@ const Navigation = ({loggedUser, storeUser}) => {
             style={{maxHeight: "600px"}}
             navbarScroll
           >
-            <NavDropdown title="Perfil" id="navbarScrollingDropdown">
+            <NavDropdown title={userNameProfile} id="navbarScrollingDropdown">
               {!loggedUser ? (
                 <>
                   <NavDropdown.Item as={Link} to="/login">
@@ -65,58 +67,82 @@ const Navigation = ({loggedUser, storeUser}) => {
 
                   {loggedUser.role === "STANDARD" ? (
                     <NavDropdown.Item as={Link} to="/profile-user">
-                      Mi perfil
+                      Mi perfil {/* Profile de user */}
                     </NavDropdown.Item>
                   ) : (
-                    <NavDropdown.Item as={Link} to="/profile-user-team">
-                      Mi perfil
-                    </NavDropdown.Item>
+                    <>
+                      <NavDropdown.Item as={Link} to="/team/profile">
+                        Vender entradas
+                      </NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/profile-user-team">
+                        Mis ventas
+                      </NavDropdown.Item>
+                    </>
                   )}
                   <NavDropdown.Divider />
-                  <NavDropdown.Item as={"span"} onClick={logout}>
+                  <NavDropdown.Item as={Link} onClick={logout} to="/">
                     Cerrar Sesion
                   </NavDropdown.Item>
                 </>
               )}
             </NavDropdown>
-            {loggedUser && loggedUser.role === "STANDARD" && (
+            <>
+              <NavDropdown title="Tickets" id="navbarScrollingDropdown">
+                <NavDropdown.Item as={Link} to="/league/england">
+                  Premier League
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/league/spain">
+                  LaLiga
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/league/italy">
+                  Serie A
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/league/germany">
+                  Bundesliga
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/league/argentina">
+                  Liga prof. Argentina
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/league/france">
+                  League 1
+                </NavDropdown.Item>
+              </NavDropdown>
+            </>
+            <>
+              <NavDropdown title="Posiciones" id="navbarScrollingDropdown">
+                <NavDropdown.Item as={Link} to="/standings/england">
+                  Premier League
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/standings/spain">
+                  LaLiga
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/standings/italy">
+                  Serie A
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/standings/argentina">
+                  Liga Prof. Argentina
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/standings/germany">
+                  Bundesliga
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/standings/france">
+                  League 1
+                </NavDropdown.Item>
+              </NavDropdown>
+            </>
+            {/* <Nav.Link as={Link} to="/tickets">
+                Tickets
+              </Nav.Link>
+            {loggedUser && loggedUser.role === "TEAM" && (
               <>
-                <NavDropdown title="Ligas" id="navbarScrollingDropdown">
-                  <NavDropdown.Item as={Link} to="/league/england">
-                    Premier League
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/league/spain">
-                    LaLiga
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/league/italy">
-                    Serie A
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/league/germany">
-                    Bundesliga
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/league/france">
-                    League 1
+                <Nav.Link>Vender entradas</Nav.Link>
+                <NavDropdown title="Mi equipo" id="navbarScrollingDropdown">
+                  <NavDropdown.Item as={Link} to="/team/profile">
+                    Partidos
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link as={Link} to="/tickets">
-                  Tickets
-                </Nav.Link>
-                <Nav.Link to="#Tickets"></Nav.Link>
               </>
-            )}
-            {loggedUser && loggedUser.role === "TEAM" && (
-              <NavDropdown title="Mi equipo" id="navbarScrollingDropdown">
-                <NavDropdown.Item as={Link} to="/team/profile">
-                  Partidos
-                </NavDropdown.Item>
-                {/* <NavDropdown.Item as={Link} to="/profile-user-team">
-                  Mi perfil
-                </NavDropdown.Item>
-                <NavDropdown.Item as={"span"} onClick={logout}>
-                    Cerrar Sesion
-                  </NavDropdown.Item> */}
-              </NavDropdown>
-            )}
+            )} */}
           </Nav>
           <Form onSubmit={handleSubmit} className="d-flex">
             <FormControl
@@ -128,7 +154,7 @@ const Navigation = ({loggedUser, storeUser}) => {
               value={teamName}
               onChange={handleChange}
             />
-            <Button variant="">
+            <Button variant="" type="submit">
               <Link to={`/matches/team/${teamName}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
