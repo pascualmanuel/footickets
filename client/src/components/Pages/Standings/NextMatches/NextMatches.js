@@ -2,7 +2,8 @@ import APIHandler from "../../../../services/api.service";
 import {useParams} from "react-router";
 import {useState, useEffect} from "react";
 import {Table, Spinner} from "react-bootstrap";
-import {format} from "date-fns";
+
+import {formatDate} from "../../../../utils/index";
 
 const footballAPI = new APIHandler();
 
@@ -40,16 +41,9 @@ function NextMatches(props) {
 
         <tbody>
           {nextMatchList.map((match) => {
-            const matchDay = match.fixture.date;
-
-            const matchDaySimply = format(
-              new Date(matchDay),
-              "ccc, dd/MM, HH:mm"
-            );
-
             return (
               <tr>
-                <td>{matchDaySimply}</td>
+                <td>{formatDate(new Date(match?.fixture.date))}</td>
                 <td colSpan={1}>{match.teams.home.name}</td>
                 {/* <td colSpan={1}>{match.goals.home}</td> */}
                 {/* <td colSpan={1}>{match.goals.away}</td> */}

@@ -3,8 +3,6 @@ const API = new APIHandler();
 const Stripe = require("stripe");
 const router = require("express").Router();
 const Match = require("../models/Match.model");
-const {format} = require("date-fns");
-
 
 const stripe = new Stripe(
   "sk_test_51K6CRIH1ByOTHJYIhKQvZj6tcqIVHPvbxdYFsZK3AdkM58qPTqVHVwDkgXlHC6YU83SbtAGmEoEMOKWdJw2LB9F9002TJHvtbA"
@@ -79,17 +77,17 @@ router.get("/next-matches/:country", (req, res, next) => {
     uruguay: 268,
   };
 
-  let curr = new Date(); // get current date
-  let first = curr.getDate() - curr.getDay() + 4; // First day is the day of the month - the day of the week
-  let last = first + 5; // last day is the first day + 6
+  // let curr = new Date(); // get current date
+  // let first = curr.getDate() - curr.getDay() + 4; // First day is the day of the month - the day of the week
+  // let last = first + 5; // last day is the first day + 6
 
-  let thursday = new Date(curr.setDate(first));
-  let tuesday = new Date(curr.setDate(last));
+  // let thursday = new Date(curr.setDate(first));
+  // let tuesday = new Date(curr.setDate(last));
 
-  const firstDay = format(thursday, "yyyy-MM-dd");
-  const lastDay = format(tuesday, "yyyy-MM-dd");
-  console.log("firstDay", firstDay);
-  console.log("lastDay", lastDay);
+  // const firstDay = format(thursday, "yyyy-MM-dd");
+  // const lastDay = format(tuesday, "yyyy-MM-dd");
+  // console.log("firstDay", firstDay);
+  // console.log("lastDay", lastDay);
 
   let leagueId = leagueMapper[country];
   const year = 2021;
