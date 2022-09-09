@@ -74,7 +74,7 @@ class LoginPage extends Component {
                   Iniciar Sesión
                 </Button>
                 <p>
-                  <br></br> ¿Aún no eres parte de la comunidad de FootTicket?{" "}
+                  <br></br> ¿Aún no eres parte de la comunidad de FootTicket?
                   <br></br>
                 </p>
                 <p>

@@ -3,7 +3,6 @@ import {useParams} from "react-router";
 import {useState, useEffect} from "react";
 import {Table, Spinner} from "react-bootstrap";
 import {format} from "date-fns";
-import "./NextMatches.css";
 
 const footballAPI = new APIHandler();
 
