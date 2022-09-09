@@ -26,7 +26,7 @@ class APIHandler {
   getUserTeam = (id) => this.axiosApp.get(`teams?id=${id}`);
 
   getTopScorers = (id) =>
-    this.axiosApp.get(`players/topscorers?league=${id}&season=2021`);
+    this.axiosApp.get(`players/topscorers?league=${id}&season=2022`);
 
   getTeamId = (name) => this.axiosApp.get(`/teams?name=${name}`);
 

@@ -3,6 +3,8 @@ const API = new APIHandler();
 const Stripe = require("stripe");
 const router = require("express").Router();
 const Match = require("../models/Match.model");
+const {format} = require("date-fns");
+
 
 const stripe = new Stripe(
   "sk_test_51K6CRIH1ByOTHJYIhKQvZj6tcqIVHPvbxdYFsZK3AdkM58qPTqVHVwDkgXlHC6YU83SbtAGmEoEMOKWdJw2LB9F9002TJHvtbA"
@@ -90,7 +92,7 @@ router.get("/next-matches/:country", (req, res, next) => {
   console.log("lastDay", lastDay);
 
   let leagueId = leagueMapper[country];
-  const year = 2022;
+  const year = 2021;
   const matchesNumber = 10;
 
   const matchesResponse = API.getNextMatches(leagueId, matchesNumber);
@@ -107,6 +109,59 @@ router.get("/next-matches/:country", (req, res, next) => {
 
 ///||||Copiado ya de todofutbol lo de arriba.
 
+//////////////////////
+
+router.get("/standings/:country", (req, res) => {
+  const {country} = req.params;
+
+  const leagueMapper = {
+    spain: 140,
+    argentina: 128,
+    england: 39,
+    italy: 135,
+    france: 61,
+    germany: 78,
+    brazil: 71,
+    mexico: 262,
+    uruguay: 268,
+  };
+
+  let leagueId = leagueMapper[country];
+  const year = 2022;
+
+  const positionResponse = API.getPositions(leagueId, year);
+
+  Promise.all([positionResponse])
+    .then((data) => {
+      const [positionResponse] = data;
+      const standings = positionResponse.data.response;
+      res.json(standings);
+    })
+    .catch((err) => console.log(err));
+});
+/////
+
+router.get("/league-info/", (req, res) => {
+  const {country} = req.params;
+
+  const leagueMapper = {
+    spain: 140,
+    argentina: 128,
+    england: 39,
+    italy: 135,
+    france: 61,
+    germany: 78,
+    brazil: 71,
+    uruguay: 268,
+  };
+
+  let leagueId = leagueMapper[country];
+  const year = 2021;
+
+  const positionResponse = API.getPositions(leagueId, year);
+});
+
+///
 router.get("/match/:id", (req, res) => {
   const {id} = req.params;
 
