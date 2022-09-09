@@ -5,8 +5,6 @@ import BuyerMatchCard from "./BuyerMatchCard";
 import "./BuyerMatchCard.css";
 import {Spinner} from "react-bootstrap";
 
-// import Example from "../../Offcanvas/Example";
-
 const footballAPI = new APIHandler();
 function Matches() {
   //   console.log(footballAPI);
@@ -27,9 +25,23 @@ function Matches() {
     </Spinner>
   ) : (
     <>
-      <h2>
-        <img src={matchList[0]?.league.logo} alt="League" />
-      </h2>
+      <br></br>
+      <br></br>
+      <div className="logo-contenedor">
+        <div className="logo-radius">
+          <img
+            src={
+              matchList[0]?.league.name === "Liga Profesional Argentina"
+                ? "https://www.ligaprofesional.ar/wp-content/uploads/2022/04/logo-LPF.png"
+                : matchList[0]?.league.logo
+            }
+            alt="Logo"
+            className="title-img"
+          />
+        </div>
+        <h2 style={{marginLeft: "15px"}}>{matchList[0]?.league.name}</h2>
+      </div>
+      <br></br>
       <div className="container">
         {matchList.map((match) => {
           return <BuyerMatchCard match={match} />;

@@ -157,12 +157,12 @@ router.post("/checkout", async (req, res) => {
     const {id, amount} = req.body;
     const payment = await stripe.paymentIntents.create({
       amount,
-      currency: "USD",
-      description: "Blah blah",
-      payment_method: id,
+      currency: "EUR",
+      description: "Venta de entrada",
+      // payment_method: id,
+      payment_method_types: ["card"],
       confirm: true,
     });
-    console.log(req.body);
   } catch (err) {
     console.log(err);
     res.json({message: err});

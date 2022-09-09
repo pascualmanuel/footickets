@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-
 import "./Payment.css";
 import {loadStripe} from "@stripe/stripe-js";
 
@@ -18,11 +17,12 @@ const stripePromise = loadStripe(
 );
 
 const CheckoutForm = (props) => {
-  console.log(props, "soy props");
-
   const stripe = useStripe();
   const elements = useElements();
   const ticketService = new APIHandler();
+
+  console.log(props.teamHome, "props.match.teams.home.nameprueba");
+  console.log(props, "props.match.teams.away.nameprueba");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,13 +36,19 @@ const CheckoutForm = (props) => {
         `${process.env.REACT_APP_BASE_URL}/matches/checkout`,
         {
           id,
-          amount: props.total * 100,
+          amount: props.price * 100,
         }
       );
       ticketService
-        .createTicket(props.price, props.matchId, props.number)
+        .createTicket(
+          props.price,
+          props.matchId,
+          props.number,
+          props.info,
+          props.teamHome,
+          props.teamAway
+        )
         .then((res) => {
-          console.log(res.data);
           return ticketService.sendEmail(res.data._id);
         })
         .then((res) => {
@@ -54,12 +60,32 @@ const CheckoutForm = (props) => {
     }
   };
 
+  const cardStyle = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: "Arial, sans-serif",
+        fontSmoothing: "antialiased",
+        fontSize: "16px",
+
+        "::placeholder": {
+          color: "#32325d",
+        },
+      },
+      invalid: {
+        fontFamily: "Arial, sans-serif",
+        color: "#fa755a",
+        iconColor: "#fa755a",
+      },
+    },
+  };
+
   const history = useHistory();
 
   return (
     <>
       <form className="form-control" onSubmit={handleSubmit}>
-        <CardElement />
+        <CardElement options={cardStyle} />
 
         <button className="btn btn-success" id="pay" type="submit">
           Pagar

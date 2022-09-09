@@ -17,8 +17,11 @@ class APIHandler {
     this.axiosApp.get(`/team-profile/check-match/${matchId}`);
   createMatch = (match) =>
     this.axiosApp.post(`/team-profile/create-match`, match);
-  createTicket = (price, matchId, number) =>
-    this.axiosApp.post(`/tickets/create-ticket/${price}/${matchId}/${number}`);
+
+  createTicket = (price, matchId, number, info, teamHome, teamAway) =>
+    this.axiosApp.post(
+      `/tickets/create-ticket/${price}/${matchId}/${number}/${info}/${teamHome}/${teamAway}`
+    );
   sendEmail = (ticketId) => this.axiosApp.post(`/checkout/finish/${ticketId}`);
   getAllTicketsMatches = () => this.axiosApp.get(`/matches/get-matches`);
   getMatchInfo = (matchId) =>

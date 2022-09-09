@@ -14,8 +14,8 @@ a {
 
 .desc {
   font-size: 1em;
-  font-style: italic;
-  font-family: Georgia, serif;
+  /* font-style: italic; */
+  /* font-family: Georgia, serif; */
 }
 
 .title,
@@ -218,10 +218,10 @@ section {
   display: block;
 }
 
-body {
+/* body {
   line-height: 1.618;
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 ol,
 ul {
@@ -252,9 +252,9 @@ a {
 
 code,
 pre,
-samp {
+/* samp {
   font-family: monospace;
-}
+} */
 
 img,
 video {
