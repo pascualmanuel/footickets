@@ -26,6 +26,12 @@ class APIHandler {
   getAllTicketsMatches = () => this.axiosApp.get(`/matches/get-matches`);
   getMatchInfo = (matchId) =>
     this.axiosApp.get(`/matches/get-match-info/${matchId}`);
+  getPositions = (country) =>
+    this.axiosApp.get(`/matches/standings/${country}`);
+  getNextMatches = (country) =>
+    this.axiosApp.get(`/matches/next-matches/${country}`);
+  getLeagueInfo = (country) =>
+    this.axiosApp.get(`/matches/league-info/${country}`);
   getTeamInfo = (name) => this.axiosApp.get(`/matches/team-info/${name}`);
 }
 

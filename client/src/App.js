@@ -14,9 +14,7 @@ import AcceptedPayment from "./components/Pages/Payment/AcceptedPayment";
 import TeamTickets from "./components/Pages/Matches/TeamTickets";
 import ProfileUser from "./components/ProfileUser/profileUser";
 import ProfileUserTeam from "./components/ProfileUser/profileUserTeam";
-
-
-
+import Standings from "./components/Pages/Standings/Standings";
 
 class App extends Component {
   constructor(props) {
@@ -104,6 +102,14 @@ class App extends Component {
             <Route
               path="/finish/:ticketId"
               render={(props) => <AcceptedPayment {...props} />}
+            />
+            <Route path="/standings" exact render={() => <Standings />} />
+
+            <Route
+              path="/standings/:country"
+              render={(props) => (
+                <Standings {...props} storeUser={this.storeUser} />
+              )}
             />
           </Switch>
         </main>
