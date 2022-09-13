@@ -34,7 +34,7 @@ function Positions() {
 
   console.log(leagueList.name, "leagueList.name");
 
-  // leagueList.name === "Liga Profesional Argentina" ? "https://www.ligaprofesional.ar/wp-content/uploads/2022/04/logo-LPF.png" : leagueList.logo
+  // console.log(matchList, "prueba");
 
   return matchList.length === 0 ? (
     <Spinner animation="border" role="status" id="pluswrap">
@@ -110,6 +110,7 @@ function Positions() {
               </tr>
             );
           })}
+
           <tr className="qualification">
             <td style={{backgroundColor: "#007d01ad"}}></td>
             <td colSpan={7}>Champions League</td>

@@ -68,10 +68,7 @@
   width: 100%;
   margin-top: 10px;
 }
-.card-accepted {
-  display: flex;
-  width: 60%;
-}
+
 #ticketprice {
   width: 35% !important;
 }

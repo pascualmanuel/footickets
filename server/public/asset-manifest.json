@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.adae139d.chunk.css",
-    "main.js": "/static/js/main.dd0abd04.chunk.js",
-    "main.js.map": "/static/js/main.dd0abd04.chunk.js.map",
+    "main.css": "/static/css/main.6f8a878e.chunk.css",
+    "main.js": "/static/js/main.52c19fff.chunk.js",
+    "main.js.map": "/static/js/main.52c19fff.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.747640bc.js",
     "runtime-main.js.map": "/static/js/runtime-main.747640bc.js.map",
     "static/css/2.0a9ec390.chunk.css": "/static/css/2.0a9ec390.chunk.css",
@@ -12,10 +12,10 @@
     "static/js/3.a5822092.chunk.js.map": "/static/js/3.a5822092.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.0a9ec390.chunk.css.map": "/static/css/2.0a9ec390.chunk.css.map",
-    "static/css/main.adae139d.chunk.css.map": "/static/css/main.adae139d.chunk.css.map",
+    "static/css/main.6f8a878e.chunk.css.map": "/static/css/main.6f8a878e.chunk.css.map",
     "static/js/2.3100413d.chunk.js.LICENSE.txt": "/static/js/2.3100413d.chunk.js.LICENSE.txt",
     "static/media/amex.9ecea2dc.png": "/static/media/amex.9ecea2dc.png",
-    "static/media/SearchBar.css": "/static/media/fondo_copy.a33422d8.png",
+    "static/media/SearchBar.css": "/static/media/background.9d79f0a5.webp",
     "static/media/ft-logo.0e4fff41.png": "/static/media/ft-logo.0e4fff41.png",
     "static/media/mastercard.98e6700b.png": "/static/media/mastercard.98e6700b.png",
     "static/media/visa.8cfb69c0.png": "/static/media/visa.8cfb69c0.png"
@@ -24,7 +24,7 @@
     "static/js/runtime-main.747640bc.js",
     "static/css/2.0a9ec390.chunk.css",
     "static/js/2.3100413d.chunk.js",
-    "static/css/main.adae139d.chunk.css",
-    "static/js/main.dd0abd04.chunk.js"
+    "static/css/main.6f8a878e.chunk.css",
+    "static/js/main.52c19fff.chunk.js"
   ]
 }
