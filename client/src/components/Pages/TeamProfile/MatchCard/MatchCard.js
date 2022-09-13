@@ -79,21 +79,25 @@ function TeamProfile(props) {
   return (
     <>
       {
-        <Card style={{width: "18rem"}}>
+        <Card style={{width: "21rem"}}>
           <Card.Body>
             <Card.Title>
-              <img
-                src={props.match?.teams.home.logo}
-                alt="hola"
-                style={{width: "20px"}}
-              />
-              {props.match?.teams.home.name} vs
-              <img
-                src={props.match?.teams.away.logo}
-                alt="hola"
-                style={{width: "20px"}}
-              />
-              {props.match?.teams.away.name}
+              <p>
+                <img
+                  src={props.match?.teams.home.logo}
+                  alt="Equipo Local"
+                  style={{width: "20px", margin: "10px"}}
+                />
+                {props.match?.teams.home.name}
+              </p>
+              <p style={{marginTop: "5px"}}>
+                <img
+                  src={props.match?.teams.away.logo}
+                  alt="Equipo Visitante"
+                  style={{width: "20px", margin: "10px"}}
+                />
+                {props.match?.teams.away.name}
+              </p>
             </Card.Title>
             <Card.Text></Card.Text>
           </Card.Body>
@@ -105,7 +109,7 @@ function TeamProfile(props) {
             <ListGroupItem>{props.match?.fixture.venue.name}</ListGroupItem>
           </ListGroup>
           <Card.Body>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className="form-center">
               <div className="contador">
                 <InputGroup className="mb-3">
                   <Button
@@ -140,7 +144,13 @@ function TeamProfile(props) {
                   onChange={handlePriceChange}
                 />
               </InputGroup>
-              <Button as="input" id="pay" type="submit" value="Enviar" />
+              <Button
+                as="input"
+                id="pay"
+                type="submit"
+                value="Enviar"
+                className="button-details"
+              />
             </Form>
           </Card.Body>
         </Card>

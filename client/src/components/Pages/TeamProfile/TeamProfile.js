@@ -32,10 +32,12 @@ function TeamProfile(props) {
     </Spinner>
   ) : (
     <>
-      <h2 className="title"> Proximos Partidos </h2>
+      <h2 className="title" style={{marginTop: "50px"}}>
+        {props.loggedUser.username}
+      </h2>
       <div className="contenedor">
         {matches.map((match) => (
-          <>{<MatchCard match={match}></MatchCard>}</>
+          <>{<MatchCard match={match} key={match.fixture.id}></MatchCard>}</>
         ))}
       </div>
     </>
