@@ -148,7 +148,7 @@ function TeamProfile(props) {
                 as="input"
                 id="pay"
                 type="submit"
-                value="Enviar"
+                value="Enviar!"
                 className="button-details"
               />
             </Form>
