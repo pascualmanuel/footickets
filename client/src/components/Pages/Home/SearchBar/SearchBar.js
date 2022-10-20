@@ -18,9 +18,9 @@ function SearchBar() {
       <div className="s006">
         <form onSubmit={handleSubmit}>
           <fieldset>
-            {/* <legend>
-              Busca tu entrada por tu equipo favorito / TodoFutbol
-            </legend> */}
+            <legend>
+              <strong> Buscá por Equipo o Selección Nacional </strong>
+            </legend>
             <div className="inner-form">
               <div className="input-field">
                 <Link to={`/matches/team/${teamName}`}>
@@ -43,7 +43,7 @@ function SearchBar() {
                 <input
                   id="search"
                   type="text"
-                  placeholder="Busca por Equipo o Seleccion Nacional - WC 2022"
+                  placeholder="Real Madrid / Argentina"
                   name="teamName"
                   value={teamName}
                   onChange={handleChange}
