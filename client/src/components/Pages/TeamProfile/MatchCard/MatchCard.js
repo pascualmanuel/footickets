@@ -159,3 +159,23 @@ function TeamProfile(props) {
   );
 }
 export default TeamProfile;
+
+
+
+
+// GET /api/team-profile/check-match/855736 200 255.355 ms - 2
+// GET /api/team-profile/check-match/855735 200 377.137 ms - 2
+// GET /api/team-profile/check-match/855734 200 387.989 ms - 2
+// GET /api/team-profile/check-match/855739 200 1856.945 ms - 2
+// GET /api/team-profile/check-match/855738 200 2198.253 ms - 2
+// GET /api/team-profile/check-match/866681 200 2212.531 ms - 2
+// GET /api/team-profile/check-match/855737 200 2217.209 ms - 207
+// GET /api/team-profile/check-match/855740 200 2988.452 ms - 2
+// GET /api/team-profile/check-match/855742 200 1148.464 ms - 2
+// GET /api/team-profile/check-match/871851 200 1233.481 ms - 2
+// GET /api/team-profile/check-match/855741 200 3053.790 ms - 2
+// GET /api/team-profile/check-match/871850 304 1344.257 ms - -
+// GET /api/team-profile/check-match/855743 200 2382.167 ms - 2
+// GET /api/team-profile/check-match/855745 200 1335.454 ms - 2
+// GET /api/team-profile/check-match/855744 200 1347.409 ms - 2
+// GET /api/team-profile/check-match/855746 304 1272.780 ms - -

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import TodayMatches from "../TodayMatches";
 import "./SearchBar.css";
 
 function SearchBar() {
@@ -19,7 +20,7 @@ function SearchBar() {
         <form onSubmit={handleSubmit}>
           <fieldset>
             <legend>
-              <strong> Buscá por Equipo o Selección Nacional </strong>
+              <strong>Buscá tu entrada por Equipo o Selección Nacional </strong>
             </legend>
             <div className="inner-form">
               <div className="input-field">
@@ -51,6 +52,15 @@ function SearchBar() {
               </div>
             </div>
           </fieldset>
+          <br></br>
+
+          {/* <TodayMatches /> */}
+
+          <Link to={`/league/wc`}>
+            <div className="button-50" role="button">
+              2022 Fifa World Cup
+            </div>
+          </Link>
         </form>
       </div>
     </>

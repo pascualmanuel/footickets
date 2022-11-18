@@ -36,6 +36,7 @@ router.get("/league/:country", (req, res, next) => {
   const {country} = req.params;
 
   const leagueMapper = {
+    wc: 1,
     spain: 140,
     argentina: 128,
     england: 39,
@@ -49,7 +50,7 @@ router.get("/league/:country", (req, res, next) => {
 
   let leagueId = leagueMapper[country];
   // const year = 2021;
-  const matchesNumber = 12;
+  const matchesNumber = 16;
 
   const matchesResponse = API.getNextMatches(leagueId, matchesNumber);
 
@@ -57,6 +58,8 @@ router.get("/league/:country", (req, res, next) => {
     .then((data) => {
       const [matchesResponse] = data;
       const matches = matchesResponse.data.response;
+
+      console.log(matchesResponse.data.response, "marchesrespone");
       res.json(matches);
     })
     .catch((err) => console.log(err));
@@ -106,6 +109,11 @@ router.get("/next-matches/:country", (req, res, next) => {
 });
 
 ///||||Copiado ya de todofutbol lo de arriba.
+
+
+//liveFootball
+
+// https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all
 
 //////////////////////
 
