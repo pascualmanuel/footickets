@@ -4,7 +4,9 @@ import APIHandler from "../../../services/api.service";
 import BuyerMatchCard from "./BuyerMatchCard";
 import {Spinner} from "react-bootstrap";
 import "../../Styles/styles.css";
-
+import {useHistory} from "react-router-dom";
+import Cross from "../../../assets/cross.svg";
+import Home from "../Home/Home";
 const teamHandler = new APIHandler();
 
 function TeamMatches() {
@@ -36,9 +38,25 @@ function TeamMatches() {
       .catch((err) => console.log(err));
   }, [teamName]);
 
-  console.log(teams, "quee");
-  console.log(teamName, "quee");
+  // console.log(teams, "quee");
+  // console.log(teamName, "quee");
   // console.log("hola!!");
+  const history = useHistory();
+
+  if (teams === undefined) {
+    return (
+      <>
+        <div style={{display: "flex", justifyContent: "center"}}>
+          <div className="box-no-matches">
+            <p className="p-no-matches">
+              No se han encontrado partidos para: {teamName}
+            </p>
+          </div>
+        </div>
+        <Home />
+      </>
+    );
+  }
 
   return matches.length === 0 || teams.length === 0 ? (
     <>

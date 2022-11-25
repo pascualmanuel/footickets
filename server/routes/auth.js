@@ -30,6 +30,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (password.length < 8) {
     return res.status(400).json({
       errorMessage: "Your password needs to be at least 8 characters long.",
+      // console.log(errorMessage, "errormes");
     });
   }
 
@@ -52,6 +53,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
       return res.status(400).json({errorMessage: "Username already taken."});
     }
 
+    // if (found) {
+    //   console.log("heyyyy");
+    // }
     // if user is not found, create a new user - start with hashing the password
     return bcrypt
       .genSalt(saltRounds)

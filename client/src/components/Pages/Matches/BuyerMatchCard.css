@@ -145,3 +145,14 @@
     justify-content: center;
   }
 }
+
+.box-no-matches {
+  /* border: 1px solid black; */
+  /* padding: 72px; */
+  margin-top: 61vh;
+  position: fixed;
+  border-radius: 100px;
+  /* background-color: white; */
+  display: flex;
+  color: white;
+}

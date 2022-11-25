@@ -27,4 +27,18 @@ app.use("/api", allRoutes);
 
 app.use((req, res) => res.sendFile(__dirname + "/public/index.html"));
 
+// app.use((req, res, next) => {
+//   if (res.headersSent) {
+//     return next(err);
+//     console.log("hello");
+//   }
+//   res.status(304);
+//   //   res.send({error: "not founds"});
+// });
+
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(404).send("Something broke!");
+// });
+
 module.exports = app;

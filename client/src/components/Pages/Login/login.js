@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import {Form, Button, Col} from "react-bootstrap";
 import AuthService from "../../../services/auth.service";
 import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
+
 import "../../Styles/styles.css";
 
 class LoginPage extends Component {
@@ -26,7 +28,9 @@ class LoginPage extends Component {
         this.props.history.push("/");
       })
 
-      .catch((err) => console.log(err.response.data.message));
+      .catch((err) =>
+        console.log(err.response.data.message, "yo soy el error!!")
+      );
   };
 
   handleInputChange = (e) => {

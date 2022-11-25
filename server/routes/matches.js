@@ -8,6 +8,11 @@ const stripe = new Stripe(
   "sk_test_51K6CRIH1ByOTHJYIhKQvZj6tcqIVHPvbxdYFsZK3AdkM58qPTqVHVwDkgXlHC6YU83SbtAGmEoEMOKWdJw2LB9F9002TJHvtbA"
 );
 
+// app.use(function (err, req, res, next) {
+//   res.status(err.status || 500);
+//   res.send(err);
+// });
+
 router.get("/get-matches", (req, res) => {
   let dbInfo = [];
 
@@ -110,7 +115,6 @@ router.get("/next-matches/:country", (req, res, next) => {
 
 ///||||Copiado ya de todofutbol lo de arriba.
 
-
 //liveFootball
 
 // https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all
@@ -185,9 +189,10 @@ router.get("/team/:name", (req, res) => {
   teamsAPI
     .getTeamId(name)
     .then((response) => res.json(response.data.response[0].team.id))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err, "este es el err"));
 });
 
+//////
 router.get("/team/matches/:id", (req, res) => {
   const {id} = req.params;
   const teamsAPI = new APIHandler();
@@ -195,7 +200,7 @@ router.get("/team/matches/:id", (req, res) => {
   teamsAPI
     .getNextTeamMatches(id)
     .then((response) => res.json(response.data))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err, "errrrrs"));
 });
 
 ///////////////////////////////////////////////
